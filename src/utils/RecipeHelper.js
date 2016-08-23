@@ -1,3 +1,6 @@
+/**
+ * Recipe Helper
+ */
 var RecipeHelper = {
     csvToArray: (csv) => {
         return csv.split(',').map(val => {

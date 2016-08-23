@@ -13,6 +13,9 @@ var recipeArrDefault = [
 
 var recipeArr;
 
+/**
+ * Recipe Store
+ */
 var RecipeStore = {
     getRecipe: (index = -1) => {
         if (index >= 0) return recipeArr[index];

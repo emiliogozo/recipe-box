@@ -1,6 +1,9 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
+/**
+ * Ingredients Component
+ */
 class Ingredients extends React.Component {
     render() {
         return (

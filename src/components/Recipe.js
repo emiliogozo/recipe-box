@@ -3,6 +3,9 @@ import { ButtonToolbar, Button, Panel } from 'react-bootstrap';
 
 import Ingredients from './Ingredients';
 
+/**
+ * Recipe Component
+ */
 class Recipe extends React.Component {
     render() {
         var {ingredients, name, onEdit, onDelete, ...other} = this.props;

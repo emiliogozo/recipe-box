@@ -6,6 +6,9 @@ import RecipeStore from '../stores/RecipeStore';
 import Recipe from './Recipe';
 import RecipeModal from './RecipeModal';
 
+/**
+ * Recipe List Component
+ */
 class RecipeList extends React.Component {
     constructor() {
         super();
@@ -17,6 +20,7 @@ class RecipeList extends React.Component {
         };
     }
     componentDidMount() {
+        // get recipe data
         this.setState({
             recipe: RecipeStore.getRecipe()
         });
@@ -28,7 +32,10 @@ class RecipeList extends React.Component {
                     <Accordion bsStyle='success'>
                         { this.state.recipe.map((item, i) => this._createPanel(item, i)) }
                     </Accordion>
-                    <Button bsStyle='primary' bsSize='large' onClick={() => this._modifyRecipe() }>Add Recipe</Button>
+                    <Button bsStyle='primary' bsSize='large' 
+                        onClick={() => this._modifyRecipe() }>
+                        Add Recipe
+                    </Button>
                     <RecipeModal
                         showModal={this.state.showModal}
                         onHide={() => this._closeModal() }
@@ -38,6 +45,9 @@ class RecipeList extends React.Component {
             </div>
         );
     }
+    /**
+     * Populate the Recipe Panel
+     */
     _createPanel(item, i) {
         return (
             <Recipe
@@ -49,15 +59,23 @@ class RecipeList extends React.Component {
                 onDelete={() => this._deleteRecipe(i) } />
         );
     }
+    /**
+     * open the modal
+     */
     _openModal() {
         this.setState({
             showModal: true
         });
     }
+    /**
+     * close the modal
+     * reload the data if necessary
+     */
     _closeModal() {
         this.setState({
             showModal: false
         });
+        // fetch the new data
         if (this.state.newData) {
             this.setState({
                 recipe: RecipeStore.getRecipe(),
@@ -65,6 +83,10 @@ class RecipeList extends React.Component {
             });
         }
     }
+    /**
+     * opens the modal to
+     * add or edit a recipe
+     */
     _modifyRecipe(editKey = -1) {
         this._openModal();
         var type = editKey === -1 ? 'add' : 'edit';
@@ -74,10 +96,13 @@ class RecipeList extends React.Component {
             newData: true
         });
     }
+    /**
+     * Delete a recipe
+     */
     _deleteRecipe(delKey = -1) {
         RecipeStore.deleteRecipe(delKey);
         this.setState({
-            newData: true
+            recipe: RecipeStore.getRecipe()
         });
     }
 }

@@ -4,6 +4,9 @@ import { Button, Modal, FormGroup, FormControl, ControlLabel } from 'react-boots
 import RecipeHelper from '../utils/RecipeHelper';
 import RecipeStore from '../stores/RecipeStore';
 
+/** 
+ * Recipe Modal
+ */
 class RecipeModal extends React.Component {
     render() {
         var recipe = RecipeStore.getRecipe(this.props.editKey);
@@ -34,6 +37,9 @@ class RecipeModal extends React.Component {
             </Modal>
         );
     }
+    /**
+     * Handles adding/editing recipe to the Data stores
+     */ 
     _addRecipe() {
         var recipe = {};
         recipe.name = document.getElementById('recipeName').value;
